@@ -11,7 +11,8 @@ Limitations:
 * January can't be in a column beyond Z in your Categories sheet.
 * The script has not been tested with multiple years in the Categories sheet.
 * Your Transactions sheet has to have the date in column B, the category in
-  column D, and the amount in column E.
+  column D, and the amount in column E. If this isn't the case you'll need to
+  adjust the formula for D2 below.
 * This will only rollover categories where the type is "Expense". You can try
   removing that condition from the query in A1 to see if it still works for
   you. I haven't tried it.
