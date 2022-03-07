@@ -41,7 +41,8 @@ F2 -> =IF(E2>0,E2/$I$2,0)
       autofill column F
 ```
 
-**IMPORTANT**: Make a backup copy of your Categories sheet before continuing!!!
+> :warning: **WARNING**: Make a backup copy of your Categories sheet before continuing!!!
+
 
 Then create the Apps Script file:
 
