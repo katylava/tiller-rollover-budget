@@ -1,3 +1,7 @@
+/**
+ * @OnlyCurrentDoc
+ */
+
 // See https://github.com/katylava/tiller-rollover-budget for how to use.
 
 const CURRENT_YEAR = 2022;
