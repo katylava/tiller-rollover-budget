@@ -47,8 +47,11 @@ F2 -> =IF(E2>0,E2/$I$2,0)
 Then create the Apps Script file:
 
 1. Open Apps Script from the Extensions menu and copy this script into Code.gs.
-2. Adjust the CURRENT_YEAR and CATEGORIES_JANUARY_COLUMN below as needed.
-3. Reload your spreadsheet and select "Rollover Budget" > "Redistribute
+2. At the top of the screen near the logo it should say "Untitled Project".
+   Edit it to say "Rollover Budget".
+3. Adjust the CURRENT_YEAR and CATEGORIES_JANUARY_COLUMN values at the
+   beginning of the script as needed.
+4. Reload your spreadsheet and select "Rollover Budget" > "Redistribute
    remaining yearly budget" from the Extensions menu.
 
 On the first run you will be prompted to allow the script to access your sheet.
