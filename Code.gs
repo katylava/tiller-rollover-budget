@@ -124,15 +124,4 @@ function validateSheets(categoriesSheet, yearlyBudgetSheet) {
       Or update the value for CATEGORIES_JANUARY_COLUMN in the Rollover Budget Apps Script.
     `);
   }
-
-  // Commenting out the below because it might not be a problem but I haven't tried it.
-
-  // const categoriesR = categoriesSheet.getRange('R1').getDisplayValues();
-
-  // if (categoriesR[0][0] == `Jan ${CURRENT_YEAR + 1}`) {
-  //   throw new Error(
-  //     `You can only redistribute the budget for ${CURRENT_YEAR}.
-  //     To continue using the Rollover Budget script, start a new budget and update the script for ${CURRENT_YEAR + 1}.`
-  //   );
-  // }
 }
