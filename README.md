@@ -41,6 +41,22 @@ F2 -> =IF(E2>0,E2/$I$2,0)
       autofill column F
 ```
 
+Alternatively, if you don't care to see all the pieces of the formula broken out
+into columns, you can do the following:
+
+```
+A1 -> =QUERY(Categories!A:C, "select A, B where C='Expense' order by B, A", 1)
+      (column B is not necessary, I just find it useful)
+C1 -> "Yearly Budget"
+       C:C -> Manually fill in budget for each category for the whole year
+D1 -> "Per remaining month"
+D2 -> =MAX(0, SUM(C2,SUMIFS(Transactions!E:E,Transactions!D:D,A2,Transactions!B:B,">12/31/"&YEAR(TODAY())-1,Transactions!B:B,"<="&EOMONTH(TODAY(),-1)))/(13-MONTH(TODAY())))
+       autofill column D
+```
+
+Then you need to either to copy column D into column F, or update the
+`getRemainingMonthlyBudget` function in the Apps Script code.
+
 > :warning: **WARNING**: Make a backup copy of your Categories sheet before continuing!!!
 
 
