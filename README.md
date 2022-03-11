@@ -17,6 +17,7 @@ Limitations:
   removing that condition from the query in A1 to see if it still works for
   you. I haven't tried it.
 
+
 ## Set up
 
 To get started create a new sheet called "Yearly Categories" with the following
@@ -32,8 +33,7 @@ H1 -> "First day of current month"
 I1 -> =EOMONTH(TODAY(),-1)+1
 H2 -> "Remaining months in year: (including this month)"
 I2 -> =13-month(I1)
-D2 -> =SUMIFS(Transactions!E:E,Transactions!D:D,A2,Transactions!B:B,">12/31/2021",Transactions!B:B,"<"&$I$1)
-      (adjust date in formula to be the last day of the previous year)
+D2 -> =SUMIFS(Transactions!E:E,Transactions!D:D,A2,Transactions!B:B,">12/31/"&YEAR(TODAY())-1,Transactions!B:B,"<"&$I$1)
       autofill column D
 E2 -> =SUM(C2:D2)
       autofill column E
@@ -56,6 +56,7 @@ Then create the Apps Script file:
 
 On the first run you will be prompted to allow the script to access your sheet.
 Approve the permission request and you should be good to go.
+
 
 ## Tips
 
