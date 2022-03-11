@@ -85,3 +85,13 @@ Approve the permission request and you should be good to go.
   extension and check your "Budgeted Cashflow" for each month to make sure it's
   what you want. Do this whenever you change your budgeted values.
 
+
+## TODO
+
+1. Implement this solely on the Categories sheet with no need for a new sheet.
+   Can use the instructions for columns C and D in the alternate solution above.
+   Then update the script. Ensure the script only runs for categories with a
+   value in column C (the yearly budget column). This will allow some
+   categories to be fixed simply by leaving column C blank on those rows, but
+   it will prevent autofilling column D (the formula for the per-month
+   remaining value).
