@@ -4,7 +4,7 @@ Use this script to adjust your [Tiller](https://www.tillerhq.com/) budget for
 current and future months based on a yearly budget for each category and how
 much has been spent so far.
 
-Limitations:
+### Limitations
 
 * The script depends on the Tiller foundation template, particularly the
   Transactions and Categories sheets.
@@ -86,12 +86,70 @@ Approve the permission request and you should be good to go.
   what you want. Do this whenever you change your budgeted values.
 
 
+## Why does this need a script? Can't it be done with just formulas?
+
+Yes, it can be done with just formulas, but with the formula, if you change
+your yearly budget values, it will change your budget for past months. If you
+need that original budget for historical reasons, then you'll need the script,
+because the script will not overwrite previous months' budgets.
+
+If you don't care about keeping historical budget values, here's what you can
+do:
+
+> :warning: **WARNING**: Make a backup copy of your Categories sheet before continuing!!!
+
+1. On your Categories sheet add a new column, right before the column for
+   January of the current year. Call this column "Yearly Budget".
+2. Set your budget values for the entire year for each category in this column.
+   If you want a fixed budget for a category, leave this column blank for that
+   category (or put a non-numeric value like `-` here instead).
+3. Sort your sheet by the Yearly Budget column -- this is temporary, you can
+   sort it another way after you've set it up. Make sure the rollover budget
+   categories come first -- in other words, make sure row 1 includes a yearly
+   budget value.
+4. Assuming your Yearly Budget column is `E` and your January of the current
+   year column is `F`, paste the forumula below into `F2` (January column in
+   the first category row).
+
+Formula:
+
+```
+=MAX(
+  0,
+  SUM(
+    $E2,
+    SUMIFS(
+      Transactions!$E:$E,
+      Transactions!$D:$D,
+      $A2,
+      Transactions!$B:$B,
+      ">12/31/"&YEAR(F$1)-1,
+      Transactions!$B:$B,
+      "<="&MIN(EOMONTH(F$1,-1),EOMONTH(TODAY(), -1))
+    )
+  )/(
+    13-MIN(
+      MONTH(TODAY()),
+      MONTH(F$1)
+    )
+  )
+)
+```
+
+If `E` is not your new Yearly Budget column or `F` is not your January column,
+replace `$E2` (one place) and `F$1` (three places) in the above formula to
+match your columns.
+
+Then autofill down the January column. Then autofill across to December. Then
+you can sort your sheet again however you like.
+
+
 ## TODO
 
-1. Implement this solely on the Categories sheet with no need for a new sheet.
-   Can use the instructions for columns C and D in the alternate solution above.
-   Then update the script. Ensure the script only runs for categories with a
-   value in column C (the yearly budget column). This will allow some
-   categories to be fixed simply by leaving column C blank on those rows, but
-   it will prevent autofilling column D (the formula for the per-month
-   remaining value).
+* Implement this solely on the Categories sheet with no need for a new sheet.
+  Can use the instructions for columns C and D in the alternate solution above.
+  Then update the script. Ensure the script only runs for categories with a
+  value in column C (the yearly budget column). This will allow some
+  categories to be fixed simply by leaving column C blank on those rows, but
+  it will prevent autofilling column D (the formula for the per-month
+  remaining value).
