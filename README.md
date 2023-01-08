@@ -67,7 +67,9 @@ Then create the Apps Script file:
    Edit it to say "Rollover Budget".
 3. Adjust the CURRENT_YEAR and CATEGORIES_JANUARY_COLUMN values at the
    beginning of the script as needed.
-4. Reload your spreadsheet and select "Rollover Budget" > "Redistribute
+4. The January column needs to have values in it, but you can set all expenses 
+   to $0 and it will be updated by the script.
+5. Reload your spreadsheet and select "Rollover Budget" > "Redistribute
    remaining yearly budget" from the Extensions menu.
 
 On the first run you will be prompted to allow the script to access your sheet.
