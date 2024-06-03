@@ -56,7 +56,9 @@ function getRemainingMonthlyBudget(sheet) {
   const values = range.getValues();
 
   return values.reduce((acc, cur) => {
-    acc[cur[0]] = cur[5];
+    if (cur[2] > 0) {
+      acc[cur[0]] = cur[5];
+    }
     return acc;
   }, {});
 }
