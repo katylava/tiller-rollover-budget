@@ -1,11 +1,7 @@
-/**
- * @OnlyCurrentDoc
- */
-
 // See https://github.com/katylava/tiller-rollover-budget for how to use.
 
-const CURRENT_YEAR = 2022;
-const CATEGORIES_JANUARY_COLUMN = 'F';
+const CURRENT_YEAR = 2024;
+const CATEGORIES_JANUARY_COLUMN = 'E';
 
 const JANUARY_INDEX = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.indexOf(CATEGORIES_JANUARY_COLUMN.toUpperCase());
 
@@ -52,7 +48,7 @@ function writeRows(sheet, categories, remainingMonthlyBudget) {
 
 function getRemainingMonthlyBudget(sheet) {
   const lastRow = sheet.getLastRow();
-  const range = sheet.getRange(1, 1, lastRow, 6);
+  const range = sheet.getRange(2, 1, lastRow, 6);
   const values = range.getValues();
 
   return values.reduce((acc, cur) => {
@@ -76,8 +72,8 @@ function validateSheets(categoriesSheet, yearlyBudgetSheet) {
 
   if (categoriesHeaders[0][0] !== 'Category' || categoriesHeaders[0][JANUARY_INDEX] !== `Jan ${CURRENT_YEAR}`) {
     throw new Error(`
-      The "Categories" sheet structure has changed. Column A should be "Category".
-      Column ${CATEGORIES_JANUARY_COLUMN} should be "Jan ${CURRENT_YEAR}".
+      The "Categories" sheet structure has changed. Column A should be "Category". 
+      Column ${CATEGORIES_JANUARY_COLUMN} should be "Jan ${CURRENT_YEAR}". 
       Or update the value for CATEGORIES_JANUARY_COLUMN in the Rollover Budget Apps Script.
     `);
   }
